@@ -1,13 +1,12 @@
 import { Response } from "express";
-import { ErrorHandler } from "../types";
+import { ResponsStatus } from "../types";
 
-const errorHandler = (res: Response, error: any) => {
-    return res
-        .status(error?.status || 500)
-        .json({
-            message: error?.status ? error.message : "Server error. Please try again later.",
-            error: error?.error || undefined,
-        })
+const errorHandler = (res: Response, error: unknown) => {
+    if (error && typeof error === "object" && "statusCode" in error && "message" in error) {
+        return res.status((error as { statusCode: number }).statusCode).json({ success: false, message: (error as { message: string }).message })
+    } else {
+        return res.status(ResponsStatus.InternalServerError).json({ message: "Server error. Please try again later.", success: false })
+    }
 }
 
 export default errorHandler;

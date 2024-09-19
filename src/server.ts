@@ -10,7 +10,7 @@ app.use(express.json());
 app.use("/api/v1", mainRouter)
 
 app.use((req, res) => {
-    errorHandler(res, { status: ResponsStatus.NotFound, message: "Page not found!" })
+    errorHandler(res, { statusCode: ResponsStatus.NotFound, message: "Page not found!" })
 })
 
 app.listen(3000, async() => {

@@ -19,7 +19,6 @@ const getPool = async () => {
 
     try {
         await pool.connect()
-        console.log("DB connected successfuly!");
         return pool
     } catch (error) {
         console.log("Error occured in DB connection!", error);

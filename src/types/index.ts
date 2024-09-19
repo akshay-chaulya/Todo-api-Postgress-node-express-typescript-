@@ -1,3 +1,12 @@
+import { Request } from "express";
+
+export interface AuthenticatedRequest extends Request {
+    userDetails?: {
+        id: string;
+        email: string;
+    }
+} 
+
 export enum ResponsStatus {
     success = 200,
     Created = 201,
@@ -11,15 +20,9 @@ export enum ResponsStatus {
     InternalServerError = 500,
 }
 
-export interface ErrorHandler {
-    status?: number;
-    message?: string;
-    error?: any;
-}
-
 export interface User {
     email: string;
-    password: string;
+    hashPassword: string;
 }
 
 export interface Todo {
@@ -27,4 +30,9 @@ export interface Todo {
     description?: string;
     user_id: string;
     done?: boolean;
+}
+
+export interface Token {
+    id: string;
+    email: string;
 }

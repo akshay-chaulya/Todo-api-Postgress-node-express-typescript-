@@ -9,7 +9,7 @@ async function connectDB() {
         await pool.query(usersTableQuery);
         // creating todos table
         await pool.query(todosTableQuery);
-        console.log("Tables created successfull.");
+        console.log("After the DB connect tables created successfull.");
     } catch (error) {
         console.log("Error occured in table creation:- ", error);
         exit(1);
